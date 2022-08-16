@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 01 - Encriptador v1</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <div class="Container">
+        <img src="img/Logo.png" alt="Logo">
+        <textarea type="submit" id="textarea-1" cols="30" rows="10" placeholder="Ingrese el texto aqui"></textarea>
+        <button class="cut-text" id="cut-text">Cortar texto</button>
+        <div class="Frame-1">
+           <h5><strong>Solo letras minúsculas y sin acentos</strong></h5>
+        </div>
+        <div class="Frame-3">
+            <button class="inline" onclick="conection_inline()"><span>Encriptar</span></button><button class="outline" onclick="conection_outline()"><span>Desencriptar</span></button>
+        </div>
+        <div class ="display" id="display">
+            <div class="Rectangle-1">
+                <img src="img/Muñeco.png" alt="Muñeco" id="display.imagen">
+            </div>
+            <div class="Frame-5" id="display.mensajes">
+                <p class="Mensaje_1">Ningún mensaje fue <br> encontrado</p>
+                <p class="Mensaje_2">Ingresa el texto que desees encriptar o desencriptar.</p>
+            </div>
+        </div>
+        <div class="not-display" id="not-display" style="display: none">
+            <button class="copy-ciphertext" id="copy-ciphertext"><span>Copiar</span></button>
+        </div>
+        <i></i>
+    </div>
+
+    <!-- Javascript -->
+    <script>
+        
+        function encryptor(textUser){
+            textUser = textUser.split("");
+            for (var i =0; i < textUser.length; i++){
+            if (textUser[i] == "e"){textUser[i] = "enter"}
+            if (textUser[i] == "i"){textUser[i] = "imes"}
+            if (textUser[i] == "a"){textUser[i] = "ai"}
+            if (textUser[i] == "o"){textUser[i] = "ober"} 
+            if (textUser[i] == "u"){textUser[i] = "ufat"}}
+            var textServer = [...textUser].join("");
+            var p = document.createElement("p");
+            p.setAttribute("id", "ciphertext");
+            var ciphertext = document.createTextNode(textServer);
+            p.appendChild(ciphertext);
+            document.getElementById("not-display").appendChild(p);
+            user = true;    
+        }
+
+        function decryptor(textUser){
+            var textServer = textUser;
+            if (textServer.includes("enter")){  
+             textServer = textServer.replace(/enter/gi, "e");
+            }
+            if (textServer.includes("imes")){  
+             textServer = textServer.replace(/imes/gi, "i");
+            }
+            if (textServer.includes("ai")){  
+             textServer = textServer.replace(/ai/gi, "a");
+            }
+            if (textServer.includes("ober")){  
+             textServer = textServer.replace(/ober/gi, "o");
+            }
+            if (textServer.includes("ufat")){  
+             textServer = textServer.replace(/ufat/gi, "u");
+            }
+            var p = document.createElement("p");
+            p.setAttribute("id", "ciphertext");
+            var ciphertext = document.createTextNode(textServer);
+            p.appendChild(ciphertext);
+            document.getElementById("not-display").appendChild(p);
+            user = true;    
+        }
+
+        var user = false;
+        function conection_inline() {
+            if (user == true) {
+                var div = document.getElementById("not-display");
+                var p = document.getElementById("ciphertext");
+                div.removeChild(p);
+            }
+            var textUser = document.getElementById('textarea-1').value.toString();
+            document.getElementById("display.imagen").style.visibility = "hidden";
+            document.getElementById("display.mensajes").style.visibility = "hidden";
+            encryptor(textUser);
+            document.getElementById("not-display").style.display = "initial";
+        }
+        var user = false;
+        function conection_outline() {
+            if (user == true) {
+                var div = document.getElementById("not-display");
+                var p = document.getElementById("ciphertext");
+                div.removeChild(p);
+            }
+            var textUser = document.getElementById('textarea-1').value.toString();
+            document.getElementById("display.imagen").style.visibility = "hidden";
+            document.getElementById("display.mensajes").style.visibility = "hidden";
+            decryptor(textUser);
+            document.getElementById("not-display").style.display = "initial";
+        }
+
+      
+        document.querySelector("#copy-ciphertext").addEventListener("click", ()=>{copyToClipBoard(document.querySelector("#ciphertext"));})
+        document.querySelector("#cut-text").addEventListener("click", ()=>{cutToClipBoard(document.querySelector("#textarea-1"));})
+
+        function copyToClipBoard(text) {
+            const input = document.createElement("input");
+            input.setAttribute('value', text.innerText);
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+        }
+
+        function cutToClipBoard(text) {
+            text.select();
+            document.execCommand("cut");
+        }
+
+        
+
+    </script>
+
+</body>
+</html>

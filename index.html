@@ -17,7 +17,7 @@
            <h5><strong>Solo letras minúsculas y sin acentos</strong></h5>
         </div>
         <div class="Frame-3">
-            <button class="inline" onclick="conection_inline()"><span>Encriptar</span></button><button class="outline" onclick="conection_outline()"><span>Desencriptar</span></button>
+            <button class="encrypt" id="encrypt"><span>Encriptar</span></button><button class="decrypt" id="decrypt"><span>Desencriptar</span></button>
         </div>
         <div class ="display" id="display">
             <div class="Rectangle-1">
@@ -79,34 +79,35 @@
             user = true;    
         }
 
+        var button;
+        document.querySelector("#encrypt").addEventListener("click", ()=>{button = 0; conection()})
+        document.querySelector("#decrypt").addEventListener("click", ()=>{button = 1; conection()})
+
         var user = false;
-        function conection_inline() {
+        function conection() {
+            var comprobation = false;
+            while (comprobation != true){
             if (user == true) {
-                var div = document.getElementById("not-display");
-                var p = document.getElementById("ciphertext");
-                div.removeChild(p);
+            var div = document.getElementById("not-display");
+            var p = document.getElementById("ciphertext");
+            div.removeChild(p);
             }
             var textUser = document.getElementById('textarea-1').value.toString();
-            document.getElementById("display.imagen").style.visibility = "hidden";
-            document.getElementById("display.mensajes").style.visibility = "hidden";
-            encryptor(textUser);
-            document.getElementById("not-display").style.display = "initial";
-        }
-        var user = false;
-        function conection_outline() {
-            if (user == true) {
-                var div = document.getElementById("not-display");
-                var p = document.getElementById("ciphertext");
-                div.removeChild(p);
+            if (textUser != textUser.toLowerCase() || textUser != textUser.normalize("NFD").replace(/[\u0300-\u036f]/g, "")){                                 //|| (/^[ÁÉÍÓÚáéíóúñÑ]+$/g.test(textUser))
+                alert("Solo letras minúsculas y sin acentos")
+                user = false;
+                break;
             }
-            var textUser = document.getElementById('textarea-1').value.toString();
+            else {
+            comprobation = true;
             document.getElementById("display.imagen").style.visibility = "hidden";
             document.getElementById("display.mensajes").style.visibility = "hidden";
-            decryptor(textUser);
-            document.getElementById("not-display").style.display = "initial";
+            if (button == 0){encryptor(textUser);}
+            else {decryptor(textUser);}
+            document.getElementById("not-display").style.display = "initial";}
+            }
         }
 
-      
         document.querySelector("#copy-ciphertext").addEventListener("click", ()=>{copyToClipBoard(document.querySelector("#ciphertext"));})
         document.querySelector("#cut-text").addEventListener("click", ()=>{cutToClipBoard(document.querySelector("#textarea-1"));})
 
@@ -123,8 +124,6 @@
             text.select();
             document.execCommand("cut");
         }
-
-        
 
     </script>
 

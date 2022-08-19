@@ -175,7 +175,7 @@ align-self: stretch;
 flex-grow: 0;
 }
 
-.outline {
+.decrypt {
 /* Button */
 box-sizing: border-box;
 display: flex;
@@ -193,7 +193,7 @@ order: 1;
 flex-grow: 0;
 }
 
-.outline span {
+.decrypt span {
     /* Desencriptar */
 width: 280px;
 height: 19px;
@@ -209,7 +209,7 @@ order: 0;
 flex-grow: 1;
 }
 
-.inline {
+.encrypt {
 /* Encriptar*/
 display: flex;
 flex-direction: row;
@@ -225,7 +225,7 @@ order: 0;
 flex-grow: 0;
 }
 
-.inline span {
+.encrypt span {
 /* Button */
 width: 280px;
 height: 19px;

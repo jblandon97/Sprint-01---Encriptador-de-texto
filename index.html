@@ -56,21 +56,11 @@
 
         function decryptor(textUser){
             var textServer = textUser;
-            if (textServer.includes("enter")){  
-             textServer = textServer.replace(/enter/gi, "e");
-            }
-            if (textServer.includes("imes")){  
-             textServer = textServer.replace(/imes/gi, "i");
-            }
-            if (textServer.includes("ai")){  
-             textServer = textServer.replace(/ai/gi, "a");
-            }
-            if (textServer.includes("ober")){  
-             textServer = textServer.replace(/ober/gi, "o");
-            }
-            if (textServer.includes("ufat")){  
-             textServer = textServer.replace(/ufat/gi, "u");
-            }
+            if (textServer.includes("enter")){textServer = textServer.replace(/enter/gi, "e");}
+            if (textServer.includes("imes")){textServer = textServer.replace(/imes/gi, "i");}
+            if (textServer.includes("ai")){textServer = textServer.replace(/ai/gi, "a");}
+            if (textServer.includes("ober")){textServer = textServer.replace(/ober/gi, "o");}
+            if (textServer.includes("ufat")){textServer = textServer.replace(/ufat/gi, "u");}
             var p = document.createElement("p");
             p.setAttribute("id", "ciphertext");
             var ciphertext = document.createTextNode(textServer);
@@ -78,10 +68,6 @@
             document.getElementById("not-display").appendChild(p);
             user = true;    
         }
-
-        var button;
-        document.querySelector("#encrypt").addEventListener("click", ()=>{button = 0; conection()})
-        document.querySelector("#decrypt").addEventListener("click", ()=>{button = 1; conection()})
 
         var user = false;
         function conection() {
@@ -108,8 +94,6 @@
             }
         }
 
-        document.querySelector("#copy-ciphertext").addEventListener("click", ()=>{copyToClipBoard(document.querySelector("#ciphertext"));})
-        document.querySelector("#cut-text").addEventListener("click", ()=>{cutToClipBoard(document.querySelector("#textarea-1"));})
 
         function copyToClipBoard(text) {
             const input = document.createElement("input");
@@ -124,6 +108,13 @@
             text.select();
             document.execCommand("cut");
         }
+
+        //Botones <>
+        var button;
+        document.querySelector("#encrypt").addEventListener("click", ()=>{button = 0; conection()})
+        document.querySelector("#decrypt").addEventListener("click", ()=>{button = 1; conection()})
+        document.querySelector("#copy-ciphertext").addEventListener("click", ()=>{copyToClipBoard(document.querySelector("#ciphertext"));})
+        document.querySelector("#cut-text").addEventListener("click", ()=>{cutToClipBoard(document.querySelector("#textarea-1"));})
 
     </script>
 

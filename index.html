@@ -40,11 +40,12 @@
         function encryptor(textUser){
             textUser = textUser.split("");
             for (var i =0; i < textUser.length; i++){
-            if (textUser[i] == "e"){textUser[i] = "enter"}
-            if (textUser[i] == "i"){textUser[i] = "imes"}
-            if (textUser[i] == "a"){textUser[i] = "ai"}
-            if (textUser[i] == "o"){textUser[i] = "ober"} 
-            if (textUser[i] == "u"){textUser[i] = "ufat"}}
+                if (textUser[i] == "e"){textUser[i] = "enter"}
+                if (textUser[i] == "i"){textUser[i] = "imes"}
+                if (textUser[i] == "a"){textUser[i] = "ai"}
+                if (textUser[i] == "o"){textUser[i] = "ober"} 
+                if (textUser[i] == "u"){textUser[i] = "ufat"}
+            }
             var textServer = [...textUser].join("");
             var p = document.createElement("p");
             p.setAttribute("id", "ciphertext");
@@ -73,27 +74,26 @@
         function conection() {
             var comprobation = false;
             while (comprobation != true){
-            if (user == true) {
-            var div = document.getElementById("not-display");
-            var p = document.getElementById("ciphertext");
-            div.removeChild(p);
-            }
-            var textUser = document.getElementById('textarea-1').value.toString();
-            if (textUser != textUser.toLowerCase() || textUser != textUser.normalize("NFD").replace(/[\u0300-\u036f]/g, "")){                                 //|| (/^[ÁÉÍÓÚáéíóúñÑ]+$/g.test(textUser))
-                alert("Solo letras minúsculas y sin acentos")
-                user = false;
-                break;
-            }
-            else {
-            comprobation = true;
-            document.getElementById("display.imagen").style.visibility = "hidden";
-            document.getElementById("display.mensajes").style.visibility = "hidden";
-            if (button == 0){encryptor(textUser);}
-            else {decryptor(textUser);}
-            document.getElementById("not-display").style.display = "initial";}
+                if (user == true) {
+                    var div = document.getElementById("not-display");
+                    var p = document.getElementById("ciphertext");
+                    div.removeChild(p);
+                }
+                var textUser = document.getElementById('textarea-1').value.toString();
+                if (textUser != textUser.toLowerCase() || textUser != textUser.normalize("NFD").replace(/[\u0300-\u036f]/g, "")){                                 //|| (/^[ÁÉÍÓÚáéíóúñÑ]+$/g.test(textUser))
+                    alert("Solo letras minúsculas y sin acentos")
+                    user = false;
+                    break;
+                }
+                else {
+                    comprobation = true;
+                    document.getElementById("display.imagen").style.visibility = "hidden";
+                    document.getElementById("display.mensajes").style.visibility = "hidden";
+                    if (button == 0){encryptor(textUser);}
+                    else {decryptor(textUser);}
+                    document.getElementById("not-display").style.display = "initial";}
             }
         }
-
 
         function copyToClipBoard(text) {
             const input = document.createElement("input");

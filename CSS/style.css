@@ -6,11 +6,11 @@ margin: 0 auto;
 zoom: 75%;
 border-radius: 50px;
 background: rgb(243, 245, 252, 0.9);
-background-image: URL(/Insignia.png);
+background-image: URL(https://app.aluracursos.com/form-one/assets/images/logo-corner.png);
 background-size: 80%;
 background-position:center;
 background-repeat: no-repeat;
-background-blend-mode: lighten;
+background-blend-mode:hard-light;
 }
 
 .Container img {
